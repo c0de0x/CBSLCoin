@@ -1,0 +1,26 @@
+# /etc/conf.d/CBSLd: config file for /etc/init.d/CBSLd
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/CBSL/CBSL.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/CBSLd"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/CBSLd.pid"
+
+# Where to write CBSLd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/CBSLd"
+
+# User and group to own CBSLd process
+#BITCOIND_USER="CBSL"
+#BITCOIND_GROUP="CBSL"
+
+# Path to CBSLd executable
+#BITCOIND_BIN="/usr/bin/CBSLd"
+
+# Nice value to run CBSLd under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""

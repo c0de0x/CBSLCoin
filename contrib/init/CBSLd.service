@@ -1,0 +1,26 @@
+[Unit]
+Description=CBSL's distributed currency daemon
+After=network.target
+
+[Service]
+User=CBSL
+Group=CBSL
+
+Type=forking
+PIDFile=/var/lib/CBSLd/CBSLd.pid
+
+ExecStart=/usr/bin/CBSLd -daemon -pid=/var/lib/CBSLd/CBSLd.pid \
+          -conf=/etc/CBSL/CBSL.conf -datadir=/var/lib/CBSLd
+
+ExecStop=-/usr/bin/CBSL-cli -conf=/etc/CBSL/CBSL.conf \
+         -datadir=/var/lib/CBSLd stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target
