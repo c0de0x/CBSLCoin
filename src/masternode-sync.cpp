@@ -269,9 +269,9 @@ void CMasternodeSync::Process()
         if (Params().NetworkID() == CBaseChainParams::REGTEST) {
             if (RequestedMasternodeAttempt <= 2) {
                 pnode->PushMessage("getsporks"); //get current network sporks
-            } else if (RequestedMasternodeAttempt < 4) {
+            } else if (RequestedMasternodeAttempt < 2) {
                 mnodeman.DsegUpdate(pnode);
-            } else if (RequestedMasternodeAttempt < 6) {
+            } else if (RequestedMasternodeAttempt < 2) {
                 int nMnCount = mnodeman.CountEnabled();
                 pnode->PushMessage("mnget", nMnCount); //sync payees
                 uint256 n = 0;
@@ -289,7 +289,7 @@ void CMasternodeSync::Process()
             pnode->FulfilledRequest("getspork");
 
             pnode->PushMessage("getsporks"); //get current network sporks
-            if (RequestedMasternodeAttempt >= 2) GetNextAsset();
+            if (RequestedMasternodeAttempt < 2) GetNextAsset();
             RequestedMasternodeAttempt++;
 
             return;
